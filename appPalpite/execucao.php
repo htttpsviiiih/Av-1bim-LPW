@@ -1,6 +1,43 @@
 <?php 
 require_once 'model/SpiderVerse.php';
-require_once 'index.html';
+echo '<!DOCTYPE html>  
+<html>  
+<head>  
+    <title>Multiverso Spider-Man</title>  
+    <style>  
+        body { font-family: Arial; background: #ffffff; color: #290081; text-align: center; }  
+        a { 
+            color: red; 
+            text-decoration: none; 
+            font-size: 20px; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            margin-bottom: 20px; 
+        }  
+        a img { 
+            width: 100px; 
+            height: 100px; 
+        }
+        body { 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+        }
+        img { width: 200px; height: 200px; }  
+    </style>  
+</head>  
+<body>  
+    <h1>Adivinhe o Spider-Man</h1>  
+    <p>Escolha um deles para ser seu palpite</p>  
+    <br>
+    <a href="execucao.php?palpite=1"><img src="https://i0.wp.com/ovicio.com.br/wp-content/uploads/2022/12/20221224-fkwv_esx0acopik.jpg?resize=555%2C555&ssl=1"><br>Palpite 1 - Aranha do Tobey</a>  
+    <a href="execucao.php?palpite=2"><img src="https://wallpapers.com/images/hd/andrew-garfield-spider-man-i1m3b8tq87h85us2.jpg"><br>Palpite 2- Aranha do Andrew</a>  
+    <a href="execucao.php?palpite=3"><img src="https://rollingstone.com.br/media/uploads/2023/11/tom-holland-nao-tem-certeza-se-voltara-a-viver-o-homem-aranha-foto-reproducaosony-pictures.jpg"><br>Palpite 3 = Aranha do Tom</a> 
+    <a href="execucao.php?palpite=9">Tentar Novamente</a> 
+    <a href="execucao.php?palpite=0">Sair</a> 
+</body>  
+</html>';
 $spiderman1 = new SpiderVerse(  
     "Tobey Maguire",  
     "https://i0.wp.com/ovicio.com.br/wp-content/uploads/2022/12/20221224-fkwv_esx0acopik.jpg?resize=555%2C555&ssl=1",  
@@ -37,13 +74,15 @@ do {
 } while ($correto == 0);
 
 if (!isset($_GET['palpite'])) {  
-    echo "<h1>ERRO: Você não escolheu um Spider-Man!</h1>";  
-    echo "<p>Use: execucao.php?palpite=1, =2, =3 ou =0 para sair</p>";  
+    echo "<h1>ERRO: Você não escolheu um Spider-Man!(ou para sair)</h1>";
 } else {  
     $palpiteUsuario = $_GET['palpite'];  
 
     if ($palpiteUsuario == 0) {  
         echo "<h1>Jogo encerrado! Obrigado por jogar!</h1>";  
+    }
+    elseif($palpiteUsuario == 9){
+        echo "<h1>🕷 Boa Sorte! 🕷</h1>";  
     } elseif ($palpiteUsuario == $correto) {  
         echo "<h1>🕷 Acertou! É o " . $spiderCorreto->nome . "!</h1>";  
         echo "<img src='" . $spiderCorreto->imagem . "' style='width: 300px; border: 3px solid red;'>";  
